@@ -1,4 +1,4 @@
-#! finalenv/bin/python
+#! ,,/finalenv/bin/python
 
 import flask
 
@@ -36,10 +36,16 @@ def validate_interaction(interaction):
   """
   try:
     int(interaction[INTERACTION_USER_ID])
+    print("User id validated")
     int(interaction[INTERACTION_POST_ID])
+    print("Post id validated")
     int(interaction[INTERACTION_DURATION])
+    print("Duration validated")
     float(interaction[INTERACTION_COORDS][COORDS_LATITUDE])
+    print("Latitude validated")
     float(interaction[INTERACTION_COORDS][COORDS_LONGITUDE])
+    print("Longitude validated")
+    print("Coords validated")
   except (KeyError, ValueError):
     return False
   return True
@@ -47,7 +53,11 @@ def validate_interaction(interaction):
 @service.route("/interactions/api/v1.0/report", methods=['POST'])
 def create_interaction():
   request = flask.request
-  if not request.json or not validate_interaction(request.json):
+  if not request.json:
+    print("Not json")
+    print(request)
+    flask.abort(400)
+  if not validate_interaction(request.json):
     flask.abort(400)
   interaction = {
     INTERACTION_USER_ID: request.json[INTERACTION_USER_ID],
