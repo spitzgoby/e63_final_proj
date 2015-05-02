@@ -1,4 +1,4 @@
-#! ,,/finalenv/bin/python
+#! finalenv/bin/python
 
 import flask
 
@@ -25,7 +25,7 @@ interaction format
 interactions = []
 
 INTERACTION_USER_ID = 'user_id'
-INTERACTION_POST_ID = 'post_id'
+INTERACTION_TIME_STAMP = 'time_stamp'
 INTERACTION_DURATION = 'duration'
 INTERACTION_COORDS = 'coords'
 COORDS_LATITUDE = 'latitude'
@@ -37,8 +37,8 @@ def validate_interaction(interaction):
   try:
     int(interaction[INTERACTION_USER_ID])
     print("User id validated")
-    int(interaction[INTERACTION_POST_ID])
-    print("Post id validated")
+    float(interaction[INTERACTION_TIME_STAMP])
+    print("Timestamp validated")
     int(interaction[INTERACTION_DURATION])
     print("Duration validated")
     float(interaction[INTERACTION_COORDS][COORDS_LATITUDE])
@@ -61,7 +61,7 @@ def create_interaction():
     flask.abort(400)
   interaction = {
     INTERACTION_USER_ID: request.json[INTERACTION_USER_ID],
-    INTERACTION_POST_ID: request.json[INTERACTION_POST_ID],
+    INTERACTION_TIME_STAMP: request.json[INTERACTION_TIME_STAMP],
     INTERACTION_DURATION: request.json[INTERACTION_DURATION],
     INTERACTION_COORDS: {
       COORDS_LATITUDE: request.json[INTERACTION_COORDS][COORDS_LATITUDE],
