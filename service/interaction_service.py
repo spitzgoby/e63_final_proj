@@ -2,6 +2,10 @@
 
 import flask
 
+import argparse
+from sys import stderr
+import logging
+
 service = flask.Flask(__name__)
 
 
@@ -35,25 +39,26 @@ def validate_interaction(interaction):
   """Return true if the json represents a valid interaction object
   """
   # Attempt to parse the objects, exceptions represent invalid objects
+  logging.debug("Validating posted json data, %s" % (interaction))
   try:
     int(interaction[INTERACTION_USER_ID])
-    print("User id validated")
+    logging.debug("User id validated")
     float(interaction[INTERACTION_TIME_STAMP])
-    print("Timestamp validated")
+    logging.debug("Timestamp validated")
     int(interaction[INTERACTION_DURATION])
-    print("Duration validated")
+    logging.debug("Duration validated")
     float(interaction[INTERACTION_COORDS][COORDS_LATITUDE])
-    print("Latitude validated")
+    logging.debug("Latitude validated")
     float(interaction[INTERACTION_COORDS][COORDS_LONGITUDE])
-    print("Longitude validated")
-    print("Coords validated")
+    logging.debug("Longitude validated")
+    logging.debug("Coords validated")
   except (KeyError, ValueError):
     return False
   return True
 
 @service.route("/interactions/api/v1.0/report", methods=['POST'])
 def create_interaction():
-  """
+  """Validate the posted json object
   """
   request = flask.request
   if not request.json:
@@ -80,5 +85,43 @@ def create_interaction():
 #------------------------#
 
 
+#---------------#
+# *** SETUP *** #
+#---------------#
+
+def parseArgs():
+  parser = argparse.ArgumentParser(
+    description='''
+      The Interaction Service collections interaction reports from mobile devices
+      and stores them for later analysis.
+    ''')
+  parser.add_argument('-d', '--debug', action='store_true', 
+    help='Run service in debugging mode')
+  parser.add_argument('-p', '--port', type=int, default=5000, 
+    help='Run service on selected port (default is 5000)')
+
+  return parser.parse_args()
+
+def setupLogging(debugMode):
+  if (debugMode):
+    level = logging.DEBUG
+  else:
+    level = logging.INFO
+  logging.basicConfig(stream=stderr, level=level)
+  logging.debug("Logging configuration set")
+
+
+#--------------#
+# *** MAIN *** #
+#--------------#
+
 if __name__ == '__main__':
-  service.run(debug=True)
+  args = parseArgs()
+  setupLogging(args.debug)
+  service.run(debug=args.debug, port=args.port)
+
+
+
+
+
+
