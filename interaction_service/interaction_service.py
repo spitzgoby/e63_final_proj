@@ -118,7 +118,7 @@ def setupLogging(debugMode):
 if __name__ == '__main__':
   args = parseArgs()
   setupLogging(args.debug)
-  service.run(debug=args.debug, port=args.port)
+  service.run(debug=args.debug, port=args.port, host='0.0.0.0')
 
 
 
