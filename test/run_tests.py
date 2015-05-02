@@ -1,3 +1,5 @@
+import createInteractionTests
+
 def run():
   pass
 
