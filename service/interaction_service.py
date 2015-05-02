@@ -34,6 +34,7 @@ COORDS_LONGITUDE = 'longitude'
 def validate_interaction(interaction):
   """Return true if the json represents a valid interaction object
   """
+  # Attempt to parse the objects, exceptions represent invalid objects
   try:
     int(interaction[INTERACTION_USER_ID])
     print("User id validated")
@@ -52,6 +53,8 @@ def validate_interaction(interaction):
 
 @service.route("/interactions/api/v1.0/report", methods=['POST'])
 def create_interaction():
+  """
+  """
   request = flask.request
   if not request.json:
     print("Not json")
