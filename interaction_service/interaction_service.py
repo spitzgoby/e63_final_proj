@@ -35,8 +35,12 @@ INTERACTION_COORDS = 'coords'
 COORDS_LATITUDE = 'latitude'
 COORDS_LONGITUDE = 'longitude'
 
+
 def validate_interaction(interaction):
   """Return true if the json represents a valid interaction object
+
+  Parameters:
+  interaction - The json object to be validated
   """
   # Attempt to parse the objects, exceptions represent invalid objects
   logging.debug("Validating posted json data, %s" % (interaction))
@@ -85,11 +89,14 @@ def create_interaction():
 #------------------------#
 
 
+
 #---------------#
 # *** SETUP *** #
 #---------------#
 
 def parseArgs():
+  '''Parse command line arguments
+  '''
   parser = argparse.ArgumentParser(
     description='''
       The Interaction Service collections interaction reports from mobile devices
@@ -103,6 +110,8 @@ def parseArgs():
   return parser.parse_args()
 
 def setupLogging(debugMode):
+  '''Set logging environment variables
+  '''
   if (debugMode):
     level = logging.DEBUG
   else:
