@@ -1,4 +1,5 @@
 Flask==0.10.1
+-e git+https://github.com/bwhite/hadoopy@ff39b4e6d4e6efaf1f571cf0f2c0e0d7ab28c2d6#egg=hadoopy-master
 itsdangerous==0.24
 Jinja2==2.7.3
 MarkupSafe==0.23
