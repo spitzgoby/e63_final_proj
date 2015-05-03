@@ -7,7 +7,7 @@ A final project for Harvard Extension School's CSCIE-63 Big Data Analytics cours
 
 Goal
 -----
-Demonstrate an end to end solution for mobile analytics utilizing tools discussed during in class
+Demonstrate an end to end solution for mobile analytics utilizing tools discussed in class
 
 Components
 ----------
