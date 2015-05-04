@@ -2,6 +2,10 @@
 finalenv/
 test/testenv
 
+# sublime files
+*.sublime-project
+*.sublime-workspace
+
 # ignore todo files
 todo.md
 
