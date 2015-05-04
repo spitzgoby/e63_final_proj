@@ -3,8 +3,10 @@
 import flask
 
 import argparse
-from sys import stderr
 import logging
+
+from sys import stderr
+
 
 service = flask.Flask(__name__)
 
@@ -26,7 +28,6 @@ interaction format
   interaction_duration: "10000",
 }
 '''
-interactions = []
 
 INTERACTION_USER_ID = 'user_id'
 INTERACTION_TIME_STAMP = 'time_stamp'
@@ -80,7 +81,6 @@ def create_interaction():
       COORDS_LONGITUDE: request.json[INTERACTION_COORDS][COORDS_LONGITUDE],
     }
   }
-  interactions.append(interaction)
   return flask.jsonify({'interaction' : interaction}), 201
 
 
