@@ -3,6 +3,7 @@
 import flask
 import json
 from interaction import Interaction
+import interaction_db
 
 import argparse
 import logging
@@ -12,7 +13,7 @@ from sys import stderr
 service = flask.Flask(__name__)
 
 #--------------#
-# *** CRUD *** #
+# *** POST *** #
 #--------------#
 
 @service.route("/interactions/api/v1.0/report", methods=['POST'])
@@ -27,10 +28,8 @@ def create_interaction():
   if not Interaction.validate_interaction(request.json):
     flask.abort(400)
   interaction = Interaction(request.json)
-  #interaction_db.add(interaction)
+  interaction_db.add(interaction)
   return json.dumps(interaction, default = lambda obj: obj.__dict__), 201
-  #return flask.jsonify({'interaction' : 'accepted'}), 201
-
 
 #------------------------#
 # *** ERROR HANDLING *** #
@@ -47,8 +46,8 @@ def parseArgs():
   '''
   parser = argparse.ArgumentParser(
     description='''
-      The Interaction Service collections interaction reports from mobile devices
-      and stores them for later analysis.
+      The Interaction Service collections interaction reports from mobile 
+      devices and stores them for later analysis.
     ''')
   parser.add_argument('-d', '--debug', action='store_true', 
     help='Run service in debugging mode')

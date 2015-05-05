@@ -5,8 +5,8 @@ class Coords(object):
   COORDS_LONGITUDE = 'longitude'
 
   def __init__(self, jsonObj):
-    self.latitude = jsonObj[Coords.COORDS_LATITUDE] 
-    self.longitude = jsonObj[Coords.COORDS_LONGITUDE]
+    self.latitude = float(jsonObj[Coords.COORDS_LATITUDE])
+    self.longitude = float(jsonObj[Coords.COORDS_LONGITUDE])
 
 class Interaction(object):
 
@@ -17,8 +17,8 @@ class Interaction(object):
 
   def __init__(self, jsonObj):
     self.user_id = jsonObj[Interaction.INTERACTION_USER_ID]
-    self.time_stamp = jsonObj[Interaction.INTERACTION_TIME_STAMP]
-    self.duration = jsonObj[Interaction.INTERACTION_DURATION]
+    self.time_stamp = float(jsonObj[Interaction.INTERACTION_TIME_STAMP])
+    self.duration = int(jsonObj[Interaction.INTERACTION_DURATION])
     self.coords = Coords(jsonObj[Interaction.INTERACTION_COORDS])
 
   @staticmethod
@@ -32,7 +32,7 @@ class Interaction(object):
     logger = logging.getLogger()
     logger.debug("Validating posted json data, %s" % (jsonObj))
     try:
-      int(jsonObj[Interaction.INTERACTION_USER_ID])
+      jsonObj[Interaction.INTERACTION_USER_ID]
       logger.debug("User id validated")
       float(jsonObj[Interaction.INTERACTION_TIME_STAMP])
       logger.debug("Timestamp validated")

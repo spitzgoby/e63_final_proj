@@ -28,9 +28,14 @@ def postInteraction(interaction):
 
 def testCreateSimpleInteraction():
   timeStamp = time.time()
-  validInteraction = createInteraction(1, timeStamp, 100, 100, 100)
+  validInteraction = createInteraction('A', timeStamp, 100, 100, 100)
   response = postInteraction(validInteraction)
   assert(response.status_code == 201)
+
+  response.interaction = json.loads(response.text)
+  assert(response.interaction[INTERACTION_USER_ID] == validInteraction[INTERACTION_USER_ID])
+  assert(float(response.interaction[INTERACTION_TIME_STAMP]) - timeStamp < 0.01)
+  assert(int(response.interaction[INTERACTION_DURATION]) == 100)
 
 def runTests():
   testCreateSimpleInteraction()
