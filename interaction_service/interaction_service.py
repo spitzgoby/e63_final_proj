@@ -1,6 +1,7 @@
 #! finalenv/bin/python
 
 import flask
+import json
 from interaction import Interaction
 
 import argparse
@@ -27,7 +28,8 @@ def create_interaction():
     flask.abort(400)
   interaction = Interaction(request.json)
   #interaction_db.add(interaction)
-  return flask.jsonify({'interaction' : 'accepted'}), 201
+  return json.dumps(interaction, default = lambda obj: obj.__dict__), 201
+  #return flask.jsonify({'interaction' : 'accepted'}), 201
 
 
 #------------------------#

@@ -15,27 +15,11 @@ class Interaction(object):
   INTERACTION_DURATION = 'duration'
   INTERACTION_COORDS = 'coords'
 
-  @property
-  def user_id(self):
-      return self._user_id
- 
-  @property
-  def time_stamp(self):
-      return self._time_stamp
-
-  @property
-  def duration(self):
-      return self._duration
-  
-  @property
-  def coords(self):
-      return self._coords
-
   def __init__(self, jsonObj):
-    self._user_id = jsonObj[Interaction.INTERACTION_USER_ID]
-    self._time_stamp = jsonObj[Interaction.INTERACTION_TIME_STAMP]
-    self._duration = jsonObj[Interaction.INTERACTION_DURATION]
-    self._coords = Coords(jsonObj[Interaction.INTERACTION_COORDS])
+    self.user_id = jsonObj[Interaction.INTERACTION_USER_ID]
+    self.time_stamp = jsonObj[Interaction.INTERACTION_TIME_STAMP]
+    self.duration = jsonObj[Interaction.INTERACTION_DURATION]
+    self.coords = Coords(jsonObj[Interaction.INTERACTION_COORDS])
 
   @staticmethod
   def validate_interaction(jsonObj, logger=None):
