@@ -1,6 +1,7 @@
 import logging
 import cassandra.cluster
 
+
 session = cassandra.cluster.Cluster().connect('interactions')
 session.execute('''CREATE TABLE IF NOT EXISTS interactions (
                     user_id text,
@@ -14,7 +15,7 @@ session.execute('''CREATE TABLE IF NOT EXISTS interactions (
 def add(interaction):
   query = '''INSERT INTO interactions
             (user_id, time_stamp, duration, latitude, longitude)
-            VALUES ('{0}', {1}, {2}, {3}, {4})'''.format(
+            VALUES ("{0}", {1}, {2}, {3}, {4})'''.format(
               interaction.user_id,
               interaction.time_stamp,
               interaction.duration,
