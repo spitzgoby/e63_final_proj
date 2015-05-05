@@ -13,6 +13,7 @@ Components
 ----------
 * A REST service that receives and stores interaction objects from users' 
   mobile devices
+* Cassandra DB installation that stores user data
 * A Spark installation that can run user defined scripts against the collected
   data and provide insight into the data
 * A website using D3 visualization tools to present the analysis graphically
