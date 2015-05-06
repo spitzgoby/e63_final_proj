@@ -28,7 +28,7 @@ def create_interaction():
   if not Interaction.validate_interaction(request.json):
     flask.abort(400)
   interaction = Interaction(request.json)
-  interaction_db.add(interaction)
+  interaction_db.insertInteraction(interaction)
   return json.dumps(interaction, default = lambda obj: obj.__dict__), 201
 
 #------------------------#
