@@ -1,5 +1,3 @@
-#! finalenv/bin/python
-
 import flask
 import json
 from interaction import Interaction

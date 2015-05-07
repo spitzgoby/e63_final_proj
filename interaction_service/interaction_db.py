@@ -30,5 +30,3 @@ def insertInteraction(i):
   logging.getLogger().debug("Query: " + query)
   session.execute(prepared, 
     (i.user_id, i.time_stamp, i.duration, i.coords.latitude, i.coords.longitude))
-session.execute("CREATE KEYSPACE Excelsior \
-  WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 3 };")
