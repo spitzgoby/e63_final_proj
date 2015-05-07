@@ -12,7 +12,7 @@ session.execute('''CREATE KEYSPACE IF NOT EXISTS %s
                 ''' % (KEYSPACE_NAME))
 
 session.execute('''CREATE TABLE IF NOT EXISTS %s.%s (
-                    user_id uuid,
+                    user_id text,
                     time_stamp double,
                     duration double,
                     latitude double,
