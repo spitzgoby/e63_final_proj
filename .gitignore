@@ -9,6 +9,12 @@ test/testenv
 # ignore todo files
 todo.md
 
+# Amazon Key Pair
+*.pem
+
+#ignore OSX ds_store
+.DS_STORE
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
