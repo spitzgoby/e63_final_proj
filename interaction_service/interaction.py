@@ -18,7 +18,7 @@ class Interaction(object):
   def __init__(self, jsonObj):
     self.user_id = jsonObj[Interaction.INTERACTION_USER_ID]
     self.time_stamp = float(jsonObj[Interaction.INTERACTION_TIME_STAMP])
-    self.duration = int(jsonObj[Interaction.INTERACTION_DURATION])
+    self.duration = float(jsonObj[Interaction.INTERACTION_DURATION])
     self.coords = Coords(jsonObj[Interaction.INTERACTION_COORDS])
 
   @staticmethod
@@ -36,7 +36,7 @@ class Interaction(object):
       logger.debug("User id validated")
       float(jsonObj[Interaction.INTERACTION_TIME_STAMP])
       logger.debug("Timestamp validated")
-      int(jsonObj[Interaction.INTERACTION_DURATION])
+      float(jsonObj[Interaction.INTERACTION_DURATION])
       logger.debug("Duration validated")
       float(jsonObj[Interaction.INTERACTION_COORDS][Coords.COORDS_LATITUDE])
       logger.debug("Latitude validated")
