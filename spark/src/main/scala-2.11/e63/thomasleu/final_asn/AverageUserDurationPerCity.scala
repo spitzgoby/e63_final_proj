@@ -1,6 +1,6 @@
 package e63.thomasleu.final_asn
 
-import e63.thomasleu.final_asn.InteractionCities.{Interaction, InteractionCity}
+import e63.thomasleu.final_asn.InteractionCities.Interaction
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext._
@@ -31,8 +31,8 @@ object AverageUserDurationPerCity {
         (duration: Double) => (duration, 1),
         (acc: (Double, Int), duration: Double) => (acc._1 + duration, acc._2 + 1),
         (acc1: (Double, Int), acc2: (Double, Int)) => (acc1._1 + acc2._1, acc1._2 + acc2._2)
-      ).map{case (city, (total_dur, num_interactions)) => (city.name, city.country, total_dur / num_interactions)}
-
+      ).filter{ case (_, (_, num_interactions)) => num_interactions > 2}
+      .map{case (city, (total_dur, num_interactions)) => (city.name, city.country, total_dur / num_interactions)}
     // print all cities with interactions into a comma separated value file
     avgCityDurations.sortBy{ case (_, country, _) => country}
       .map{ case (name, country, avgDuration) => Array(name, country, avgDuration).mkString(",")}
