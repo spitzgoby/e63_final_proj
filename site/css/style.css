@@ -1,0 +1,73 @@
+/**************
+ * NAVIGATION *
+ **************/
+
+ /*
+  * Most of this code was borrowed from Lisa Catalano's 'Simple Horizontal Navigation'
+  * article at http://css-snippets.com/simple-horizontal-navigation/
+  */
+div.nav {
+  vertical-align: bottom;
+  height: 150px;
+}
+
+div.nav h1 {
+  line-height: 50px;
+  margin: 0px;
+  height: 50px;
+  text-align: center;
+  color: #347C7C;
+  font-family: 'Oswald', sans-serif;
+}
+
+.nav ul {
+  list-style: none;
+  background-color: #347C7C;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+.nav li {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2em;
+  line-height: 40px;
+  height: 40px;
+  border-bottom: 1px solid #888;
+}
+ 
+.nav a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  transition: .3s background-color;
+}
+ 
+.nav a:hover {
+  background-color: #005f5f;
+}
+ 
+.nav a.active {
+  background-color: #BCD9D9;
+  color: #347C7C;
+  cursor: default;
+}
+ 
+@media screen and (min-width: 600px) {
+  .nav li {
+    width: 120px;
+    border-bottom: none;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.4em;
+  }
+ 
+  .nav li {
+    display: inline-block;
+    margin-right: -4px;
+  }
+
+
+circle.city {
+  fill: white;
+  stroke: black;
+}
