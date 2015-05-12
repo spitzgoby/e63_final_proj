@@ -9,6 +9,11 @@ import com.datastax.spark.connector._
 
 /**
  * Created by Thomas Leu
+ *
+ * Some code adapted from code originally found in "Learning Spark" by
+ * Matei Zaharia; Patrick Wendell; Holden Karau; Andy Konwinski, O'Reilly Books Copyright 2015
+ * https://www.safaribooksonline.com/library/view/learning-spark/9781449359034/ch04.html#chap-pair-RDDS
+ *
  */
 object AverageUserDuration {
 
@@ -18,12 +23,17 @@ object AverageUserDuration {
   case class Interaction(user_id: UUID, time_stamp: Double, duration: Double, latitude: Double, longitude: Double)
 
   def main(args: Array[String]) {
+    // prepare Spark to use local Cassandra DB
     val conf = new SparkConf()
       .setMaster("local")
       .setAppName("AverageUserDuration")
       .set("spark.cassandra.connection.host", "127.0.0.1")
     val sc = new SparkContext(conf)
 
+    // grab all interactions and calculate the average.
+    // Code adapted from source code originally found in "Learning Spark" by
+    // Matei Zaharia; Patrick Wendell; Holden Karau; Andy Konwinski, O'Reilly Books Copyright 2015
+    // https://www.safaribooksonline.com/library/view/learning-spark/9781449359034/ch04.html#chap-pair-RDDS
     val interactions = sc.cassandraTable[Interaction](this.E63_KEYSPACE, this.INTERACTIONS_TABLE)
     val averages = interactions.map(interaction => (interaction.user_id, interaction.duration)).combineByKey(
       (duration: Double) => (duration, 1),
