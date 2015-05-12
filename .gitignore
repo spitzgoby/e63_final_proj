@@ -16,12 +16,12 @@ todo.md
 
 # ignore data files 
 data/
+!site/data
 
 # spark project ignores 
 spark/.idea/
 spark/target/
 spark/project
-
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

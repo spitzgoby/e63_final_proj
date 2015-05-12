@@ -1,0 +1,48 @@
+<!DOCTYPE>
+<meta charset="utf-8">
+<style type="text/css">
+  path.place {
+    fill: white;
+    stroke: black;
+  }
+</style>
+
+<body>
+  <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+  <script type="text/javascript" src="http://d3js.org/topojson.v1.min.js"></script>
+  <script type="text/javascript">
+    var width = 1000,
+        height = 700;
+
+    var map = d3.select("body").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    var projection = d3.geo.mercator()
+      .scale(800)
+      .center([105, 37.5])
+      .translate([ width / 2, height / 2])
+    var path = d3.geo.path()
+      .projection(projection);
+
+    d3.json("data/geo/china.json", function(error, china) {
+      if (error) return console.error(error);
+
+      map.append("path")
+        .datum(topojson.feature(china, china.objects.china_borders))
+        .attr("d", path);
+
+      map.append("path")
+        .datum(topojson.feature(china, china.objects.china_places))
+        .attr("d", path)
+        .attr("class", "place");
+
+      beijing = projection([116.39723, 39.9075])
+      map.append("circle")
+        .attr("cx", beijing[0])
+        .attr("cy", beijing[1])
+        .attr("r", 60)
+        .style("fill", "red");
+    }); 
+  </script>
+</body>
