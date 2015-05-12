@@ -1,3 +1,22 @@
+# python virtual environment files 
+finalenv/
+
+# sublime files 
+*.sublime-project
+*.sublime-workspace
+
+# ignore todo files 
+todo.md
+
+# Amazon Key Pair 
+*.pem
+
+#ignore OSX ds_store 
+.DS_STORE
+
+# ignore data files 
+data/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
