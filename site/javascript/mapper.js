@@ -48,7 +48,12 @@ var mapper = {
 
       // remove old city circles 
       map.select("circle.city").remove();
+
+      // grab csv file and read the data
       var fileName = "../data/interactions/top_cities_" + name + ".csv";
+
+      // csv doesnt' contain header row, so data is read as text first and
+      // later parsed
       d3.text(fileName, function(text){
         var data = d3.csv.parseRows(text, function(row, i) {
           if (i < 10) {
@@ -63,21 +68,23 @@ var mapper = {
           }
         });
 
+        // Add circles for the highest rated cities
         var map = d3.select("svg.map");
         map.selectAll(".city").data(data).enter().append("circle")
           .attr("class", "city")
           .attr("cx", function(d) {
-            return projection([d.longitude, d.latitude])[0];})
+            return projection([d.longitude, d.latitude])[0];}) // use the same projection as the map currently uses
           .attr("cy", function(d) {
             return projection([d.longitude, d.latitude])[1];})
           .attr("r", 10)
-          .attr("id", function(d) { return d.name.replace(/[\s\.]/g,'')});
+          .attr("id", function(d) { return d.name.replace(/[\s\.]/g,'')}); // remove spaces and periods 
 
+        // remove any old items from the list
         var list = d3.select("ol#cities-list");
         list.selectAll("p").remove();
         list.selectAll("p").data(data).enter().append("li")
           .text(function(d) { return d.name })
-          .on("mouseover", function(d) {
+          .on("mouseover", function(d) { // When the user hovers over a city name in the list the city should expand
             d3.select(this)
               .attr("class", "active");
             d3.select("#" + d.name.replace(/[\s\.]/g,''))

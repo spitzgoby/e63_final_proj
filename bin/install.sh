@@ -29,9 +29,6 @@ curl -k https://s3-us-west-1.amazonaws.com/thomasleu.e63final/cities.csv -o ~/e6
 
 
 # INSTALL PYTHON DEPENDENCIES AND START SERVICE
-echo 'Installing required python modules';
-sudo pip install -r requirements.txt &&
-python bin/setup_cassandra.py;
-
-echo 'Starting interaction REST service';
+sudo pip install -r requirements.txt;
+cqlsh -f commands.cql;
 python interaction_service/interaction_service.py;

@@ -1,5 +1,7 @@
 # Instructiosn modified from examples provided at 
 # http://bost.ocks.org/mike/map/
+brew install gdal;
+npm install -g topojson;
 
 # create china.json
 ogr2ogr -f GeoJSON -where "adm0_a3 IN ('CHN', 'HKG', 'TWN')" \
