@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <title>CSCIE 63 Final Assignment</title>
   <div class="nav">
     <h1>Thomas Leu</h1>
-    <h1>Assignment 8</h1>
+    <h1>Final Assignment</h1>
     <ul>
       <li class="home"><a class="active" href="">Home</a></li>
       <li class="prob"><a href="#">Maps</a></li>
@@ -17,52 +18,12 @@
 <body>
   <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
   <script type="text/javascript" src="http://d3js.org/topojson.v1.min.js"></script>
+  <script type="text/javascript" src="javascript/mapper.js"></script>
+  <div class="container" id="data"></div>
   <script type="text/javascript">
-    var width = 1000,
-        height = 700;
-
-    var map = d3.select("body").append("svg")
-      .attr("width", width)
-      .attr("height", height);
-
-    var projection = d3.geo.mercator()
-      .scale(800)
-      .center([105, 37.5])
-      .translate([ width / 2, height / 2])
-    var path = d3.geo.path()
-      .projection(projection);
-
-    d3.json("data/geo/china.json", function(error, china) {
-      if (error) return console.error(error);
-
-      map.append("path")
-        .datum(topojson.feature(china, china.objects.china_borders))
-        .attr("d", path);
-
-      map.append("path")
-        .datum(topojson.feature(china, china.objects.china_places))
-        .attr("d", path)
-        .attr("class", "place");
-
-      beijing = projection([116.39723, 39.9075])
-      map.append("circle")
-        .attr("cx", beijing[0])
-        .attr("cy", beijing[1])
-        .attr("r", 60)
-        .style("fill", "red");
-    }); 
+    //mapper.drawWorld();
+    mapper.drawUSA();
+    //mapper.drawChina();
   </script>
-</body>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>CSCIE 63 Assignment 8</title>
-</head>
-<body>
-  <header>
-
-  </header>
 </body>
 </html>
