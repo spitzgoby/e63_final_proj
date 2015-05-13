@@ -1,3 +1,9 @@
+d3.selection.prototype.moveToFront = function() {
+  return this.each(function(){
+  this.parentNode.appendChild(this);
+  });
+};
+
 var mapper = {
   geoDirectory:  "../data/geo/",
 
@@ -70,11 +76,12 @@ var mapper = {
         var list = d3.select("ol#cities-list");
         list.selectAll("p").remove();
         list.selectAll("p").data(data).enter().append("li")
-          .text(function(d) { return d.name + " " + d.count})
+          .text(function(d) { return d.name })
           .on("mouseover", function(d) {
             d3.select(this)
               .attr("class", "active");
             d3.select("#" + d.name)
+              .moveToFront()
               .transition()
               .attr("r", 100);
           })
