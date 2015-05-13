@@ -1,4 +1,4 @@
-from system import stderr
+from sys import stderr
 import logging
 import cassandra.cluster
 
