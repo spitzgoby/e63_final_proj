@@ -1,6 +1,6 @@
-package e63.thomasleu.final_asn
+package final_asn
 
-import e63.thomasleu.final_asn.InteractionCities.Interaction
+import InteractionCities.Interaction
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext._

@@ -1,6 +1,7 @@
-package e63.thomasleu.final_asn
+package final_asn
 
-import e63.thomasleu.final_asn.InteractionCities.Interaction
+import InteractionCities.Interaction
+import final_asn.InteractionCities.Interaction
 import org.apache.spark.{SparkContext, SparkConf}
 import org.apache.spark.SparkContext._
 import com.datastax.spark.connector._
