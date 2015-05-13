@@ -68,21 +68,40 @@ div.nav h1 {
 
 
 /********
- * MAPS *
+ * DATA *
  ********/
 
-svg {
-  background-color: green;
+div.container {
+  display: inline-block;
+  margin: auto;
 }
 
-circle.city {
-  fill: white;
-  stroke: black;
+div#data {
+  width: 1200px;
+  display: block;
+}
+
+#map-container {
+  width: 800px;
+  height: 700px;
+  padding: 0;
+  margin: 0;
+  float: left;
+}
+
+#cities-container {
+  width: 400px;
+  height: 700px;
 }
 
 svg.map {
   display: block;
   margin: auto;
   fill: purple;
+  stroke: black;
+}
+
+circle.city {
+  fill: white;
   stroke: black;
 }
