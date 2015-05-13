@@ -67,7 +67,22 @@ div.nav h1 {
   }
 
 
+/********
+ * MAPS *
+ ********/
+
+svg {
+  background-color: green;
+}
+
 circle.city {
   fill: white;
+  stroke: black;
+}
+
+svg.map {
+  display: block;
+  margin: auto;
+  fill: purple;
   stroke: black;
 }
