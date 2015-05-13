@@ -21,4 +21,9 @@ Components
 
 Installation
 ------------
-### Coming Soon ###
+* Follow [DataStax's instructions](http://docs.datastax.com/en/cassandra/2.1/cassandra/install/installAMI.html) to create an EC2 instance with Cassandra and
+connect over SSH
+* Close this repo with: `git clone https://github.com/spitzgoby/e63_final_proj.git`
+* Change into the new directory e63_final_proj
+* Run the installation script with `./bin/install.sh`
+* 
