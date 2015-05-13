@@ -19,19 +19,6 @@ session.execute('''CREATE TABLE IF NOT EXISTS e63.interactions (
                     PRIMARY KEY (user_id, time_stamp));
                 ''')
 
-session.execute('''COPY e63.interactions 
-                    (user_id, time_stamp, duration, latitude, longitude) 
-                    from 'data/interactions.csv';
-                ''')
-
-session.execute('''CREATE TABLE IF NOT EXISTS e63.cities (
-                    name varchar PRIMARY KEY,
-                    country varchar,
-                    latitude double,
-                    longitude double,);
-                ''')
-
-session.execute('''COPY e63.cities 
-                    (name, latitude, longitude, country)
-                    from 'data/cities.csv';
-                ''')
+session.execute("COPY e63.interactions (user_id, time_stamp, duration, latitude, longitude) from \'data/interactions.csv\';")
+session.execute("CREATE TABLE IF NOT EXISTS e63.cities (name varchar PRIMARY KEY, country varchar, latitude double, longitude double);")
+session.execute("COPY e63.cities (name, latitude, longitude, country) from \'data/cities.csv\';")
