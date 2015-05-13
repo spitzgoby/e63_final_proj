@@ -21,7 +21,7 @@ session.execute('''CREATE TABLE IF NOT EXISTS e63.interactions (
 
 session.execute('''COPY e63.interactions 
                     (user_id, time_stamp, duration, latitude, longitude) 
-                    from 'interactions.csv';
+                    from 'data/interactions.csv';
                 ''')
 
 session.execute('''CREATE TABLE IF NOT EXISTS e63.cities (
@@ -33,5 +33,5 @@ session.execute('''CREATE TABLE IF NOT EXISTS e63.cities (
 
 session.execute('''COPY e63.cities 
                     (name, latitude, longitude, country)
-                    from 'cities.csv';
+                    from 'data/cities.csv';
                 ''')
