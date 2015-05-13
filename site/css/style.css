@@ -9,6 +9,9 @@
 div.nav {
   vertical-align: bottom;
   height: 150px;
+  width: 1200px;
+  display: block;
+  margin: auto;
 }
 
 div.nav h1 {
@@ -92,8 +95,23 @@ div#data {
 #cities-container {
   width: 400px;
   height: 700px;
+  background-color: #347C7C;
 }
 
+#cities-list {
+  font-family: "Arial", "Helvetica", "sans-serif";
+  font-size: 20pt;
+  margin-left: 50px;
+}
+
+#cities-list li {
+  font-size: 16pt;
+  padding-top: 5px;
+}
+
+#cities-list li.active {
+  background-color: #005f5f;
+}
 svg.map {
   display: block;
   margin: auto;

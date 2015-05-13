@@ -64,12 +64,27 @@ var mapper = {
             return projection([d.longtidue, d.latitude])[0];})
           .attr("cy", function(d) {
             return projection([d.longtidue, d.latitude])[1];})
-          .attr("r", 5);
+          .attr("r", 10)
+          .attr("id", function(d) { return d.name });
 
         var list = d3.select("ol#cities-list");
         list.selectAll("p").remove();
         list.selectAll("p").data(data).enter().append("li")
-          .text(function(d) { return d.name + " " + d.count}); 
+          .text(function(d) { return d.name + " " + d.count})
+          .on("mouseover", function(d) {
+            d3.select(this)
+              .attr("class", "active");
+            d3.select("#" + d.name)
+              .transition()
+              .attr("r", 100);
+          })
+          .on("mouseout", function(d) {
+            d3.select(this)
+              .attr("class", null);
+            d3.select("#" + d.name)
+              .transition()
+              .attr("r", 10);
+          }); 
       });
     }); 
   }
