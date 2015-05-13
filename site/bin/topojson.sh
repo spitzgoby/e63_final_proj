@@ -16,8 +16,3 @@ ogr2ogr -f GeoJSON world.json ne_110m_admin_0_map_units.shp;
 topojson -o us_borders.json --id-property SU_A3 -- us.json;
 topojson -o china_borders.json --id-property SU_A3 -- china.json;
 topojson -o world_borders.json --id_proprety SU_A3 -- world.json;
-
-# move files to data directory
-mkdir data;
-mkdir data/geo;
-mv *.json data/geo;
