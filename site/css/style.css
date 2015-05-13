@@ -14,6 +14,11 @@ div.nav {
   margin: auto;
 }
 
+div#cities-container div.nav {
+  width: 400px;
+  height: 50px;
+}
+
 div.nav h1 {
   line-height: 50px;
   margin: 0px;
@@ -115,11 +120,17 @@ div#data {
 #cities-list li.active {
   background-color: #005f5f;
 }
+
 svg.map {
   display: block;
   margin: auto;
   fill: purple;
   stroke: black;
+  background-color: #BCD9D9;
+}
+
+svg text {
+  font-size: 14pt;
 }
 
 circle.city {

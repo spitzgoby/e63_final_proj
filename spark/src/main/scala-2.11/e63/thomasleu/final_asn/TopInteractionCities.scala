@@ -10,12 +10,10 @@ import com.datastax.spark.connector._
  */
 object TopInteractionCities {
   def main(args: Array[String]) {
-    if (args.length < 1) {
-      println("Not enough arguments, please include Country's  ISO 3166 code")
-      System.exit(1)
+    var targetCountry = "world"
+    if (args.length >= 1) {
+      targetCountry = args(0)
     }
-
-    val targetCountry = args(0)
 
     // prepare Spark to use local Cassandra DB
     val conf = new SparkConf()
@@ -37,7 +35,7 @@ object TopInteractionCities {
         (duration: Double) => (duration, 1),
         (acc: (Double, Int), duration: Double) => (acc._1 + duration, acc._2 + 1),
         (acc1: (Double, Int), acc2: (Double, Int)) => (acc1._1 + acc2._1, acc1._2 + acc2._2)
-      ).filter{ case (city, (_, _)) => city.country.equalsIgnoreCase(targetCountry)}
+      ).filter{ case (city, (_, _)) => if (targetCountry.equalsIgnoreCase("world")) true else {city.country.equalsIgnoreCase(targetCountry)}}
       .map{case (city, (total_dur, num_interactions)) => (city.name, city.country, city.latitude, city.longitude, num_interactions)}
     // print all cities with interactions into a comma separated value file sorted by country
     countryInteractions.sortBy{ case (_, _, _, _, num_interactions) => -num_interactions}

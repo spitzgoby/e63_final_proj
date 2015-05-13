@@ -8,11 +8,11 @@ var mapper = {
   geoDirectory:  "../data/geo/",
 
   drawUSA : function() {
-    mapper.drawCountryMap("us", this.geoDirectory + "us_borders.json", 660, [-96, 38]);
+    mapper.drawCountryMap("us", this.geoDirectory + "us_borders.json", 350, [-117, 47]);
   },
 
   drawChina : function() {
-    mapper.drawCountryMap("china", this.geoDirectory + "china_borders.json", 1200, [110, 37.5]);
+    mapper.drawCountryMap("china", this.geoDirectory + "china_borders.json", 700, [105, 37.5]);
   },
 
   drawWorld : function() {
@@ -55,7 +55,7 @@ var mapper = {
             return {
               "name": row[0],
               "latitude": +row[2],
-              "longtidue": +row[3],
+              "longitude": +row[3],
               "count": +row[4]
             };
           } else {
@@ -67,11 +67,11 @@ var mapper = {
         map.selectAll(".city").data(data).enter().append("circle")
           .attr("class", "city")
           .attr("cx", function(d) {
-            return projection([d.longtidue, d.latitude])[0];})
+            return projection([d.longitude, d.latitude])[0];})
           .attr("cy", function(d) {
-            return projection([d.longtidue, d.latitude])[1];})
+            return projection([d.longitude, d.latitude])[1];})
           .attr("r", 10)
-          .attr("id", function(d) { return d.name });
+          .attr("id", function(d) { return d.name.replace(/[\s\.]/g,'')});
 
         var list = d3.select("ol#cities-list");
         list.selectAll("p").remove();
@@ -80,17 +80,26 @@ var mapper = {
           .on("mouseover", function(d) {
             d3.select(this)
               .attr("class", "active");
-            d3.select("#" + d.name)
+            d3.select("#" + d.name.replace(/[\s\.]/g,''))
               .moveToFront()
               .transition()
               .attr("r", 100);
+
+            var coords = projection([d.longitude, d.latitude]);
+            map.append("text")
+              .attr("text-anchor", "middle")
+              .attr("x", coords[0])
+              .attr("y", coords[1])
+              .attr("id", d.name.replace(/[\s\.]/g,'') + "count-label")
+              .text(d.name + " " + d.count);
           })
           .on("mouseout", function(d) {
             d3.select(this)
               .attr("class", null);
-            d3.select("#" + d.name)
+            d3.select("#" + d.name.replace(/[\s\.]/g,''))
               .transition()
               .attr("r", 10);
+            d3.select("#" + d.name.replace(/[\s\.]/g,'') + "count-label").remove();
           }); 
       });
     }); 
