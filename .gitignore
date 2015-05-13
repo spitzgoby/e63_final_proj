@@ -22,6 +22,7 @@ data/
 spark/.idea/
 spark/target/
 spark/project
+spark/average_city_duration
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
