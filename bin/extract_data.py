@@ -25,9 +25,14 @@
 
 from os import listdir
 
+# returns a list of all the non hidden files in the given path by ignoring files
+# starting with the Unix hidden file designator "." 
 def listdir_noh(path):
   return [item for item in listdir(path) if not item[0] == '.']
 
+# pulls the data from the csv by splitting on commas and selecting the defined
+# indices of the given data values. Then recombines the important data as a csv
+# line
 def extractInteraction(user_id, line):
   tokens = line.split(',')
   latitude = tokens[0]
@@ -36,6 +41,8 @@ def extractInteraction(user_id, line):
   time = tokens[6].rstrip()
   return ','.join([user_id,latitude,longitude,date,time])
 
+# Determines all the paths to search for trajectory data within the given user's
+# data directory
 def buildFilePaths():
   paths = []
   for user in listdir_noh('./Data'):
@@ -44,14 +51,18 @@ def buildFilePaths():
         paths.append((user, path)) 
   return paths
 
+# Read the contents of each file in all user paths and add the results to a list
+# of user, line tuples.
 def readInteractions():
   interactions = []
   for user, path in buildFilePaths():
       with open('./Data/' + user + '/Trajectory/' + path) as inFile:
         print 'Reading trajectories for user {0}, file {1}'.format(user, path)
+        # the first 6 lines of each file are explanatory and should be ignored
         interactions.extend([extractInteraction(user, i) for i in inFile.readlines()[6:]])
   return interactions
 
+# Write the parsed results to file
 def writeInteractions(interactions):
   with open('user_interactions.csv', mode='w') as outFile:
     print 'Writing trajectories to file, this may take a few minutes...'

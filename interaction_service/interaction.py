@@ -1,5 +1,10 @@
 import logging
 
+#
+# Interactions represent a single use of an application by a user including
+# the gps coordinates, time, and duration of the interaction.
+#
+
 class Coords(object):
   COORDS_LATITUDE = 'latitude'
   COORDS_LONGITUDE = 'longitude'

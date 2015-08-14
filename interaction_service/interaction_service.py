@@ -29,12 +29,6 @@ def create_interaction():
   interaction_db.insertInteraction(interaction)
   return json.dumps(interaction, default = lambda obj: obj.__dict__), 201
 
-#------------------------#
-# *** ERROR HANDLING *** #
-#------------------------#
-
-
-
 #---------------#
 # *** SETUP *** #
 #---------------#
